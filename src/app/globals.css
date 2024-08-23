@@ -13,12 +13,24 @@ h1 {
   margin-left: 40px;
 }
 
+.wordInput {
+  width: 80%;
+  margin: 5% 5%;
+  padding: 5%;
+  font-size: 16px;
+  border-radius: 30px;
+  border: #fff;
+}
+
 .wordBlock {
   background: #c4e695;
   width: 80%;
   margin: 6% auto;
   padding: 10px 6%;
   border-radius: 30px;
+  animation-name: fromLeft;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 .wordText {
@@ -35,4 +47,15 @@ h1 {
 
 .wordMean {
   font-size: 17px;
+}
+
+@keyframes fromLeft {
+  0% {
+      transform: translateX(-30px);
+      opacity: 0;
+  }
+  100% {
+      transform: translateX(0);
+      opacity: 1;
+  }
 }

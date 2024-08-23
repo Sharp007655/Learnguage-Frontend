@@ -7,6 +7,7 @@ import liff from '@line/liff';
 export default function Home() {
   const [idToken, setIdToken] = useState(null);
   const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     // liff の初期化
@@ -40,11 +41,23 @@ export default function Home() {
     }
   }, [idToken]);
 
+  const filteredData = data.filter(item => 
+    item.word.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    item.mean.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <main>
       <h1>辞書</h1>
+      <input 
+        type="text" 
+        placeholder="検索..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className='wordInput'
+      />
       <div>
-        {data.map((item) => 
+        {filteredData.map((item) => 
           <div className='wordBlock' id={item["word"]}>
             <h2 className='wordText'>{item["word"]}</h2>
             <p className='wordRead'>{item["read"]}</p>
