@@ -30,7 +30,7 @@ export default function Home() {
   // idTokenが取得されたらAPIリクエストを実行
   useEffect(() => {
     if (idToken) {  // idTokenがnullではないことを確認
-      axios.get(`https://api.learnguage.somando.jp/user/dictionary?idToken=${idToken}`)
+      axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/user/dictionary?idToken=${idToken}`)
         .then(response => {
           console.log('API response:', response.data.words);
           setData(response.data.words);  // APIから取得したデータを状態に保存
