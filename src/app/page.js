@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function Home({ liff, liffError }) {
-  const [accessToken, setAccessToken] = useState(null);
+  const [idToken, setIdToken] = useState(null);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     if (liff) {
@@ -13,8 +14,8 @@ export default function Home({ liff, liffError }) {
           .then(() => {
             console.log("LIFF init succeeded.");
             const token = liff.getAccessToken();
-            console.log("Access Token:", token);
-            setAccessToken(token);
+            console.log("ID Token:", token);
+            setIdToken(token);
           })
           .catch((error) => {
             console.error('LIFF init failed', error);
@@ -26,24 +27,27 @@ export default function Home({ liff, liffError }) {
   }, [liff]);
 
   useEffect(() => {
-    if (accessToken) {
-      axios.get('https://api.example.com/endpoint', {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`
-        }
-      })
-      .then(response => {
-        console.log('API response:', response.data);
-      })
-      .catch(error => {
-        console.error('API call failed:', error);
-      });
-    }
-  }, [accessToken]);
+    axios.get(`https://api.learnguage.somando.jp/user/dictionary?idToken=${idToken}`, {
+      method: "GET",
+    })
+    .then(response => {
+      console.log('API response:', response.data);
+      setData(response.data["words"]); // APIから取得したデータを状態に保存
+    })
+    .catch(error => {
+      console.error('API call failed:', error);
+    });
+  }, [idToken]);
 
   return (
     <div>
-      {/* ページのコンテンツ */}
+      <h1>APIから取得したデータ</h1>
+      {idToken}
+      <ul>
+        {data.map((item, index) => (
+          <li key={index}>{item.name}</li> // ここでデータをHTMLに並べる
+        ))}
+      </ul>
     </div>
   );
 }
