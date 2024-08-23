@@ -13,7 +13,7 @@ export default function Home({ liff, liffError }) {
         liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID })
           .then(() => {
             console.log("LIFF init succeeded.");
-            const token = liff.getAccessToken();
+            const token = liff.getIDToken();
             console.log("ID Token:", token);
             setIdToken(token);
           })
@@ -27,7 +27,7 @@ export default function Home({ liff, liffError }) {
   }, [liff]);
 
   useEffect(() => {
-    axios.get(`https://api.learnguage.somando.jp/user/dictionary?idToken=${idToken}`, {
+    axios.get(`https://api.learnguage.somando.jp/user/dictionary`, {
       method: "GET",
     })
     .then(response => {
@@ -42,10 +42,10 @@ export default function Home({ liff, liffError }) {
   return (
     <div>
       <h1>APIから取得したデータ</h1>
-      {idToken}
+      {data}
       <ul>
-        {data.map((item, index) => (
-          <li key={index}>{item.name}</li> // ここでデータをHTMLに並べる
+        {data.map((item) => (
+          <li>{item}</li> // ここでデータをHTMLに並べる
         ))}
       </ul>
     </div>
