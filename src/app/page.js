@@ -42,11 +42,16 @@ export default function Home() {
 
   return (
     <main>
-      <h1>Dictionary</h1>
-      <p>{idToken}</p>
+      <h1>辞書</h1>
+      <div>
         {data.map((item) => 
-          <p>{item["word"]}, {item["mean"]}, {item["read"]}</p>
+          <div className='wordBlock' id={item["word"]}>
+            <h2 className='wordText'>{item["word"]}</h2>
+            <p className='wordRead'>{item["read"]}</p>
+            <p className='wordMean'>{item["mean"]}</p>
+          </div>
         )}
+      </div>
     </main>
   );
 }

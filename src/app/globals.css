@@ -1,0 +1,38 @@
+body {
+  background: #007655;
+  font-family: sans-serif;
+  letter-spacing: 5px;
+}
+
+h1 {
+  font-family: serif;
+  font-weight: 100;
+  color: #eee;
+  font-size: 50px;
+  letter-spacing: 30px;
+  margin-left: 40px;
+}
+
+.wordBlock {
+  background: #c4e695;
+  width: 80%;
+  margin: 6% auto;
+  padding: 10px 6%;
+  border-radius: 30px;
+}
+
+.wordText {
+  font-family: sans-serif;
+  font-size: 30px;
+  margin: 20px 0 0 0;
+}
+
+.wordRead {
+  font-size: 14px;
+  margin: 0;
+  color: #444;
+}
+
+.wordMean {
+  font-size: 17px;
+}
