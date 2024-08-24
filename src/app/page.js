@@ -43,7 +43,8 @@ export default function Home() {
 
   const filteredData = data.filter(item => 
     item.word.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    item.mean.toLowerCase().includes(searchTerm.toLowerCase())
+    item.mean.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    item.read.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
